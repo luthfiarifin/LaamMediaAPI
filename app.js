@@ -29,6 +29,10 @@ app.use('/post', PostRouter)
 app.use('/category', CategoryRouter)
 app.use('/user', UserRouter)
 
+app.get('/', function (req, res) {
+    res.send('Hello World')
+  })
+
 http.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'))
 })
