@@ -8,7 +8,7 @@ module.exports = function (io) {
         socket.on('joinMessage', function (data) {
             console.log('join message')
             messages = []
-            conn.query("SET @dest_id = ?; SET @user_id = ?; SELECT DM.id, U.name, CONCAT('/media/user/', U.image_url) AS image_url, DM.destination_id, DM.content, DM.created_at FROM dirrect_message DM INNER JOIN user U ON U.id = DM.destination_id WHERE (DM.destination_id = @dest_id AND DM.user_id = @user_id) OR (DM.user_id = @dest_id AND DM.destination_id = @user_id) ORDER BY DM.created_at ASC", [data.destination_id, data.user_id], (err, rows, fields) => {
+            conn.query("SET @dest_id = ?; SET @user_id = ?; SELECT DM.id, U.name, CONCAT('/media/user/', U.image_url) AS image_url, U.id AS user_id, DM.content, DM.created_at FROM dirrect_message DM INNER JOIN user U ON U.id = DM.user_id WHERE (DM.destination_id = @dest_id AND DM.user_id = @user_id) OR (DM.user_id = @dest_id AND DM.destination_id = @user_id) ORDER BY DM.created_at ASC", [data.destination_id, data.user_id], (err, rows, fields) => {
                 if (err) console.log(err.sqlMessage)
                 else {
                     rows[2].forEach(element => {
