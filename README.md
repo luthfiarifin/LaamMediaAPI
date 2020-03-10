@@ -17,6 +17,7 @@ https://www.youtube.com/watch?v=Z6lDDKiDFhA
 ## Build and Run :
 ```sh
 for run your node.js
+$ cd your_project_file
 $ node app.js
 
 test your api with browser or postman with url : localhost:3003/
